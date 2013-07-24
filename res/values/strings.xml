@@ -9,5 +9,6 @@
     <string name="text_update_hint">Please enter your update.</string>
     <string name="start_service">Start Service</string>
     <string name="stop_service">Stop Service</string>
+    <string name="refresh">Refresh</string>
 
 </resources>

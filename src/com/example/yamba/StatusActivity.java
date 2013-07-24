@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,6 +56,9 @@ public class StatusActivity extends Activity implements OnClickListener {
 			Log.d(TAG, "Stop Service");
 			stopService(intent);
 			return true;
+		case R.id.item_refresh:
+			Log.d(TAG, "Refresh");
+			startService(new Intent(this, RefreshService.class));
 		default:
 			return false;
 		}
@@ -101,7 +103,7 @@ public class StatusActivity extends Activity implements OnClickListener {
 			}
 
 		}
-
+		// BACK TO UI THREAD
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
