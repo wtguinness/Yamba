@@ -1,11 +1,11 @@
 package com.example.yamba;
 
-import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +25,7 @@ public class StatusActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// Debug.startMethodTracing("Yamba.trace");
+		Debug.startMethodTracing("Yamba.trace");
 
 		setContentView(R.layout.status);
 
@@ -91,9 +91,9 @@ public class StatusActivity extends Activity implements OnClickListener {
 		@Override
 		protected String doInBackground(String... params) {
 			try {
-				Twitter twitter = new Twitter("student", "password");
-				twitter.setAPIRootUrl("http://yamba.marakana.com/api");
-				twitter.setStatus(params[0]);
+//				Twitter twitter = new Twitter("student", "password");
+//				twitter.setAPIRootUrl("http://yamba.marakana.com/api");
+				((YambaApp)getApplication()).twitter.setStatus(params[0]);
 				return "Succeffully Posted: " + params[0];
 
 			} catch (TwitterException e) {
@@ -118,7 +118,7 @@ public class StatusActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		// Debug.stopMethodTracing();
+		Debug.stopMethodTracing();
 	}
 
 }

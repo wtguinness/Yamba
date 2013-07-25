@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class RefreshService extends IntentService {
 	static final String TAG = "RefreshService";
-	Twitter twitter;
+//	Twitter twitter;
 
 	public RefreshService() {
 		super(TAG);
@@ -21,7 +21,7 @@ public class RefreshService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		try {
-			List<Status> timeline = twitter.getPublicTimeline();
+			List<Status> timeline = ((YambaApp)getApplication()).twitter.getPublicTimeline();
 
 			for (Status status : timeline) {
 				Log.d(TAG, "Post:" + status.getUser() + ": " + status.getText());
@@ -36,8 +36,8 @@ public class RefreshService extends IntentService {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		twitter = new Twitter("student", "password");
-		twitter.setAPIRootUrl("http://yamba.marakana.com/api");
+//		twitter = new Twitter("student", "password");
+//		twitter.setAPIRootUrl("http://yamba.marakana.com/api");
 		Log.d(TAG, "onCreated");
 	}
 
